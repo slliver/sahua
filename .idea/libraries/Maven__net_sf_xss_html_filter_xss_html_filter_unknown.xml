@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.sf.xss-html-filter:xss-html-filter:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/xss-html-filter/xss-html-filter/unknown/xss-html-filter-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/xss-html-filter/xss-html-filter/unknown/xss-html-filter-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/sf/xss-html-filter/xss-html-filter/unknown/xss-html-filter-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

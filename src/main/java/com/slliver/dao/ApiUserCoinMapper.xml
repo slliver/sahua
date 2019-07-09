@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.dao.ApiUserCoinMapper">
+    <resultMap type="com.slliver.entity.ApiUserCoin" id="userCoinMap" extends="com.slliver.base.dao.UserMapper.BaseResultMap">
+
+    </resultMap>
+
+    <select id="selectUserCoinByCondition" parameterType="com.slliver.base.domain.BaseSearchCondition" resultType="com.slliver.entity.ApiUserCoin">
+        select  c.`user_amount`/10000 balance, c.`user_amount` user_amount,
+        (select sum(amount) from user_coin_history h where h.`user_pkid` = u.pkid and to_days(h.`make_time`) = to_days(now()) and amount > 0) today_amount
+        from `user` u
+        left join user_coin c on u.pkid = c.`user_pkid`
+
+        where u.phone = #{phone}
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.dao.ApiUserCoinHistoryMapper">
+    <resultMap type="com.slliver.entity.ApiUserCoinHistory" id="userCoinHistoryMap" extends="com.slliver.base.dao.UserMapper.BaseResultMap">
+
+    </resultMap>
+    <select id="obtainTodayAmountViaUser" resultType="java.lang.String">
+        select sum(amount)
+        from user_coin_history
+        where user_pkid = #{pkid} and to_days(make_time) = to_days(now()) and amount > 0
+    </select>
+    <select id="obtainTodaySign" resultType="java.lang.String">
+        select DISTINCT HOUR(make_time) from user_coin_history
+        where user_pkid = #{userPkid} and to_days(make_time) = to_days(now()) and action = "SIGN"
+    </select>
+</mapper>

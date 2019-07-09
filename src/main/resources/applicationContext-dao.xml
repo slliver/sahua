@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+     http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.2.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+    <!-- 数据源配置文件 -->
+    <import resource="applicationContext-dataSource.xml"/>
+
+    <!-- 3.配置SqlSessionFactory对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <!-- 扫描entity包 使用别名 -->
+        <!-- typeAliasesPackage可以配置多个值，用,;\t\n进行分割。但是不支持Ant风格的路径 -->
+        <property name="typeAliasesPackage" value="com.slliver.entity" />
+        <!-- 扫描sql配置文件:mapper需要的xml文件 -->
+        <property name="mapperLocations" value="classpath:com/slliver/**/*Mapper.xml" />
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            offsetAsPageNum=true
+                            rowBoundsWithCount=true
+                            pageSizeZero=true
+                            reasonable=true
+                            supportMethodsArguments=true
+                        </value>
+                    </property>
+                </bean>
+                <!-- 分页拦截器 -->
+                <bean class="com.slliver.common.interceptor.pageHelper.PageInterceptor"/>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.soecode.lyf.dao" />
+    </bean>
+    -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 注入sqlSessionFactory -->
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />-->
+        <!-- 给出需要扫描Dao接口包，可以写多个，可以用,;\t\n进行分割 -->
+        <property name="basePackage" value="com.slliver.**.dao"/>
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper,com.slliver.common.mapper.RobinMapper
+            </value>
+        </property>
+        <!--多数据源时候使用： property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory"/-->
+    </bean>
+
+    <!-- 如果将来上面的扫描方式不够用，可以改成下面这种方式。
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+	  <property name="basePackage" value="com.**.mapper"/>
+	  <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
+	</bean> -->
+
+    <!-- 事物 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- enable transaction demarcation with annotations -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:advice id="mysqlTransactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="del*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="get*" propagation="SUPPORTS"/>
+            <tx:method name="list*" propagation="SUPPORTS"/>
+            <tx:method name="find*" propagation="SUPPORTS"/><!-- 规范上不允许使用，但activit中自带了，迁就一下 -->
+            <tx:method name="*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config proxy-target-class="true">
+        <!--
+        第一个 *    —— 通配 随便率性返回值类型
+        第二个 ..    —— 通配包com.zhongwang.*.service下的随便率性包结构
+        第三个 *.* —— 通配包com.zhongwang.*.service下的随便率性class的随便率性方法
+        第四个 .    —— 通配 service下及其子包下全部类全部方法
+        第五个 ..    —— 通配 方法可以有0个或多个参数  -->
+        <aop:pointcut id="mysqlTransactionPointcut" expression="execution(* com.slliver..service.*.*(..))"/>
+        <aop:advisor pointcut-ref="mysqlTransactionPointcut" advice-ref="mysqlTransactionAdvice"/>
+    </aop:config>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+</beans>

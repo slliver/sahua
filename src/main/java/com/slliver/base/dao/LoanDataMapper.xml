@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.base.dao.LoanDataMapper">
+  <resultMap id="BaseResultMap" type="com.slliver.base.entity.LoanData">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pkid" jdbcType="CHAR" property="pkid" />
+    <result column="logo_pkid" jdbcType="VARCHAR" property="logoPkid" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="loan_amount" jdbcType="VARCHAR" property="loanAmount" />
+    <result column="loan_time" jdbcType="VARCHAR" property="loanTime" />
+    <result column="monthly_interest_rate" jdbcType="VARCHAR" property="monthlyInterestRate" />
+    <result column="day_interest_rate" jdbcType="VARCHAR" property="dayInterestRate" />
+    <result column="pass_rate" jdbcType="VARCHAR" property="passRate" />
+    <result column="fastest_speed" jdbcType="VARCHAR" property="fastestSpeed" />
+    <result column="total_apply" jdbcType="INTEGER" property="totalApply" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="banner_pkid" jdbcType="CHAR" property="bannerPkid" />
+    <!-- 2018-11-19 -->
+    <result column="device" property="device" jdbcType="SMALLINT" />
+    <!-- 2018-11-22 -->
+    <result column="priority" property="priority" jdbcType="SMALLINT" />
+    <result column="reserved2" jdbcType="VARCHAR" property="reserved2" />
+    <result column="reserved3" jdbcType="VARCHAR" property="reserved3" />
+    <result column="reserved4" jdbcType="VARCHAR" property="reserved4" />
+    <result column="reserved5" jdbcType="VARCHAR" property="reserved5" />
+    <result column="flag_sort" jdbcType="SMALLINT" property="flagSort" />
+    <result column="flag_delete" jdbcType="SMALLINT" property="flagDelete" />
+    <result column="flag_version" jdbcType="BIGINT" property="flagVersion" />
+    <result column="make_user" jdbcType="CHAR" property="makeUser" />
+    <result column="make_time" jdbcType="TIMESTAMP" property="makeTime" />
+    <result column="modify_user" jdbcType="CHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+</mapper>

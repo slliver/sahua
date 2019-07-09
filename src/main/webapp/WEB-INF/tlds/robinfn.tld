@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>Tcm JSTL 1.1 functions library</description>
+    <display-name>JSTL functions</display-name>
+    <tlib-version>1.1</tlib-version>
+    <short-name>robinFn</short-name>
+    <uri>http://www.robin.com/taglib/functions</uri>
+
+    <function>
+        <description>
+            Returns the bussiness value form BannerUtil.
+        </description>
+        <name>getBussinessValue</name>
+        <function-class>com.slliver.common.tag.WebFunction</function-class>
+        <function-signature>java.lang.String getBussinessValue(java.lang.String)</function-signature>
+        <example>
+            ${robinFn:getBussinessValue(name)}
+        </example>
+    </function>
+
+    <function>
+        <description>
+            Returns the forward value form BannerUtil.
+        </description>
+        <name>getForwardValue</name>
+        <function-class>com.slliver.common.tag.WebFunction</function-class>
+        <function-signature>java.lang.String getForwardValue(java.lang.String)</function-signature>
+        <example>
+            ${robinFn:getForwardValue(name)}
+        </example>
+    </function>
+
+    <function>
+        <description>
+            Returns a value of input string, if input is null, than display default value.
+        </description>
+        <name>defaultValue</name>
+        <function-class>com.slliver.common.tag.WebFunction</function-class>
+        <function-signature>java.lang.String defaultValue(java.lang.String, java.lang.String)</function-signature>
+        <example>
+            ${robinFn:defaultValue(str, "-")}
+        </example>
+    </function>
+
+    <function>
+        <description>
+            Returns a subset of a string.
+        </description>
+        <name>substring</name>
+        <function-class>com.slliver.common.tag.WebFunction</function-class>
+        <function-signature>java.lang.String substring(java.lang.String, int)</function-signature>
+        <example>
+            ${robinFn:substring(str, 6)}
+        </example>
+    </function>
+
+    <function>
+        <description>
+            Returns a value of device value.
+        </description>
+        <name>getDeviceValue</name>
+        <function-class>com.slliver.common.tag.WebFunction</function-class>
+        <function-signature>java.lang.String getDeviceValue(java.lang.Short)))</function-signature>
+        <example>
+            ${robinFn:getDeviceValue(val)}
+        </example>
+    </function>
+</taglib>

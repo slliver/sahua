@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="quartzSchedule" class="com.slliver.common.job.QuartzSchedule"/>
+
+	<!--
+	<bean id="job" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="quartzSchedule" />
+		<property name="targetMethod" value="startTask" />
+	</bean>
+	<bean id="cronTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job" />
+		<property name="cronExpression" value="0 10 4 * * ?" />
+	</bean>
+
+
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="applicationContextSchedulerContextKey">
+			<value>applicationContext</value>
+		</property>
+		<property name="waitForJobsToCompleteOnShutdown" value="true" />
+		<property name="triggers">
+			<list>
+			</list>
+		</property>
+		<property name="autoStartup" value="true" />
+	</bean>
+
+	<bean id="statisticsTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="statisticsTask" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0 16 * * ?</value>
+		</property>
+	</bean>
+	<bean id="statisticsTask" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.zhongwang.tcm.common.quartz.StatisticsTask" />
+	</bean>
+	-->
+</beans>

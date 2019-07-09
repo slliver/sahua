@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<classPathEntry location="./generator/baseEntity.jar"/>-->
+    <context id="Mysql" targetRuntime="Mybatis3Simple" defaultModelType="flat">
+        <!--"Mybatis3Simple"  "Mybatis3"-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.slliver.common.mapper.RobinMapper"/>
+        </plugin>
+
+        <!--plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <plugin type="org.mybatis.generator.plugins.MybatisCriteriaPlugin" />
+
+        <plugin type="org.mybatis.generator.plugins.MybatisServicePlugin">
+            <property name="targetPackage" value="com.zhongwang.sys.service" />
+            <property name="implementationPackage" value="com.zhongwang.sys.service.impl" />
+            <property name="targetProject" value="output/java" />
+            <property name="enableInsert" value="true" />
+            <property name="enableUpdateByExampleSelective" value="true" />
+            <property name="enableInsertSelective" value="true" />
+            <property name="enableUpdateByPrimaryKey" value="true" />
+            <property name="enableDeleteByPrimaryKey" value="true" />
+            <property name="enableDeleteByExample" value="true" />
+            <property name="enableUpdateByPrimaryKeySelective" value="true" />
+            <property name="enableUpdateByExample" value="true" />
+        </plugin-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/winter_api?characterEncoding=UTF-8"
+                        userId="root"
+                        password="admin">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.slliver.base.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootClass" value="com.slliver.base.domain.BaseDomain"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.slliver.base.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.slliver.base.dao" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <!--type="ANNOTATEDMAPPER" "XMLMAPPER" "MIXEDMAPPER"-->
+            <!--<property name="rootInterface" value="com.zhongwang.common.mapper.ZWMapper"/>-->
+        </javaClientGenerator>
+        <table tableName="user_channel">
+            <generatedKey column="pkid" sqlStatement="JDBC" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

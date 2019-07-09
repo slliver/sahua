@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.base.dao.MessageTextMapper">
+  <resultMap id="BaseResultMap" type="com.slliver.base.entity.MessageText">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pkid" jdbcType="CHAR" property="pkid" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="flag_sort" jdbcType="SMALLINT" property="flagSort" />
+    <result column="flag_delete" jdbcType="SMALLINT" property="flagDelete" />
+    <result column="flag_version" jdbcType="BIGINT" property="flagVersion" />
+    <result column="make_user" jdbcType="CHAR" property="makeUser" />
+    <result column="make_time" jdbcType="TIMESTAMP" property="makeTime" />
+    <result column="modify_user" jdbcType="CHAR" property="modifyUser" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+</mapper>

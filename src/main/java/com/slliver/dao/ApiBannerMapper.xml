@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.dao.ApiBannerMapper">
+    <resultMap type="com.slliver.entity.ApiBanner" id="bannerMap" extends="com.slliver.base.dao.BannerMapper.BaseResultMap">
+        <result column="http_url" property="httpUrl" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectListByPage" parameterType="com.slliver.base.domain.BaseSearchCondition" resultMap="bannerMap">
+        select * from banner ORDER BY make_time DESC
+    </select>
+
+    <select id="selectByBussinessTypeApi" resultMap="bannerMap">
+        SELECT
+            b.pkid,
+            b.logo_pkid,
+            b.`name`,
+            b.bussiness_type,
+            b.bussiness_pkid,
+            b.forward_type,
+            b.url,
+            r.url AS http_url
+        FROM
+            banner b
+        LEFT JOIN resource r ON b.logo_pkid = r.pkid
+        WHERE
+            b.bussiness_type = #{bussinessType}
+            <if test="bussinessType == 1">
+            AND b.pkid IN (
+                SELECT
+                    banner_pkid
+                FROM
+                    loan_data
+            )
+            </if>
+          <if test="bussinessType == 2">
+            AND b.pkid IN (
+                SELECT
+                    banner_pkid
+                FROM
+                    credit_card
+            )
+          </if>
+        <if test="bussinessType == 4">
+            AND b.pkid IN (
+                SELECT
+                    banner_pkid
+                FROM
+                    loan_daquan_data
+            )
+        </if>
+    </select>
+
+    <select id="selectByBussinessType" resultMap="bannerMap">
+        SELECT
+            b.pkid,
+            b.logo_pkid,
+            b.`name`,
+            b.bussiness_type,
+            b.bussiness_pkid,
+            b.forward_type,
+            b.url,
+            r.url AS http_url
+        FROM
+            banner b
+        LEFT JOIN resource r ON b.logo_pkid = r.pkid
+        WHERE
+          b.bussiness_type = #{bussinessType}
+        <if test="bussinessType == 1">
+            AND b.pkid NOT IN (
+                SELECT
+                    banner_pkid
+                FROM
+                    loan_data
+            )
+        </if>
+        <if test="bussinessType == 2">
+            AND b.pkid NOT IN (
+                SELECT
+                  banner_pkid
+                FROM
+                  credit_card
+            )
+        </if>
+        <if test="bussinessType == 4">
+            AND b.pkid NOT IN (
+            SELECT
+            banner_pkid
+            FROM
+            loan_daquan_data
+            )
+        </if>
+    </select>
+</mapper>

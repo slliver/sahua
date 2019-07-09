@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:task="http://www.springframework.org/schema/task"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+     http://www.springframework.org/schema/task 
+     http://www.springframework.org/schema/task/spring-task.xsd">
+     
+    <!-- 配置文件 -->
+    <!--<context:property-placeholder location="classpath:config.properties" />-->
+
+	<!-- enable autowire -->
+    <context:annotation-config />
+	
+	<!-- enable component scanning -->
+    <context:component-scan base-package="com.slliver.**.service,com.slliver.common.mq"/>
+    
+    <task:annotation-driven />
+
+    <import resource="classpath*:applicationContext-shiro.xml"/>
+    <import resource="classpath*:applicationContext-dao.xml"/>
+    <!--<import resource="classpath*:applicationContext-security.xml"/>-->
+    <!--<import resource="classpath*:applicationContext-redis.xml"/>-->
+    <!--<import resource="classpath*:applicationContext-rabbitMQ.xml"/>-->
+
+    <bean id="messagesSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="utf-8" />
+        <property name="basename" value="messages" />
+        <!--默认为false，这样当Spring在ResourceBundle中找不到messageKey的话，就抛出NoSuchMessageException，   把它设置为True，则找不到不会抛出异常，而是使用messageKey作为返回值-->
+        <property name="useCodeAsDefaultMessage" value="false" />
+        <!--
+        <property name="cacheSeconds" value="120"></property>
+        <property name="basenames">  
+            <list>  
+                <value>classpath:messages</value>  
+                <value>classpath:org/hibernate/validator/ValidationMessages</value>
+            </list>  
+        </property>
+        -->
+	</bean>
+	
+	<!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring bean对象 -->  
+	<bean class="com.slliver.common.spring.SpringContextHolder" lazy-init="false" />
+
+    <!-- 系统不支持当前路径下的扫描，启动对@AspectJ注解的支持 -->
+    <!-- proxy-target-class等于true是强制使用cglib代理，proxy-target-class默认是false，如果你的类实现了接口 就走JDK代理，如果没有，走cglib代理 -->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+</beans>

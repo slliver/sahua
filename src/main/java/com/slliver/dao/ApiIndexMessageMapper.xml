@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.dao.ApiIndexMessageMapper">
+    <resultMap type="com.slliver.entity.ApiIndexMessage" id="apiIndexMessageMap" extends="com.slliver.base.dao.IndexMessageMapper.BaseResultMap">
+
+    </resultMap>
+</mapper>

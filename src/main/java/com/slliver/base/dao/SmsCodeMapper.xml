@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.base.dao.SmsCodeMapper">
+    <resultMap id="BaseResultMap" type="com.slliver.base.entity.SmsCode">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="pkid" jdbcType="CHAR" property="pkid"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="ip_address" jdbcType="VARCHAR" property="ipAddress"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
+        <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate"/>
+        <result column="expire_time" jdbcType="BIGINT" property="expireTime"/>
+        <result column="make_date" jdbcType="VARCHAR" property="makeDate"/>
+        <result column="flag_valid" jdbcType="BIT" property="flagValid"/>
+        <result column="reserved1" jdbcType="VARCHAR" property="reserved1"/>
+        <result column="reserved2" jdbcType="VARCHAR" property="reserved2"/>
+        <result column="flag_sort" jdbcType="SMALLINT" property="flagSort"/>
+        <result column="flag_delete" jdbcType="SMALLINT" property="flagDelete"/>
+        <result column="flag_version" jdbcType="BIGINT" property="flagVersion"/>
+        <result column="make_user" property="makeUser" jdbcType="CHAR"/>
+        <result column="make_time" property="makeTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_user" jdbcType="CHAR" property="modifyUser"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+</mapper>

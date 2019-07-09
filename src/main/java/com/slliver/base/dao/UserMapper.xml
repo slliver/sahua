@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slliver.base.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.slliver.base.entity.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="pkid" jdbcType="CHAR" property="pkid"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="salt" jdbcType="VARCHAR" property="salt"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="sex" jdbcType="BIT" property="sex"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="avatar_pkid" jdbcType="CHAR" property="avatarPkid"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="access_token" jdbcType="VARCHAR" property="accessToken"/>
+        <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate"/>
+        <result column="expire_time" jdbcType="BIGINT" property="expireTime"/>
+        <result column="channel_no" jdbcType="VARCHAR" property="channelNo"/>
+        <result column="device" jdbcType="VARCHAR" property="device"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+        <result column="reserved1" jdbcType="VARCHAR" property="reserved1"/>
+        <result column="reserved2" jdbcType="VARCHAR" property="reserved2"/>
+        <result column="flag_sort" jdbcType="SMALLINT" property="flagSort"/>
+        <result column="flag_delete" jdbcType="SMALLINT" property="flagDelete"/>
+        <result column="flag_version" jdbcType="BIGINT" property="flagVersion"/>
+        <result column="make_time" jdbcType="TIMESTAMP" property="makeTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="modify_user" jdbcType="VARCHAR" property="modify_user"/>
+    </resultMap>
+</mapper>
